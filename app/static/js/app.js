@@ -12,6 +12,7 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     { path: '/', component: Index } ,
+    { path: '/index', component: Index } ,
     { path: '/about', component: About } ,
     { path: '*', component: NotFound }
   ],
