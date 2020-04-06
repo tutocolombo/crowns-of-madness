@@ -12,13 +12,20 @@ def load_user(id):
     return User.query.get(int(id))
 
 
+players = db.Table(
+    'players',
+    db.Column('game_id', db.Integer, db.ForeignKey('game.id')),
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'))
+)
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    # all_players = ['Game.player1_id', 'Game.player2_id', 'Game.player3_id', 'Game.player4_id', 'Game.player5_id', 'Game.player6_id']
-    # games = db.relationship('Game', foreign_keys='Game.player1_id', backref='player', lazy='dynamic')
+    games = db.relationship('Game', secondary=players,
+                            backref='players', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -47,12 +54,6 @@ class User(UserMixin, db.Model):
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    player1_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    player2_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    player3_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    player4_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    player5_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    player6_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     stats = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 

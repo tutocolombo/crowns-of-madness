@@ -1,0 +1,3 @@
+[submodule "app/game"]
+	path = app/game
+	url = https://github.com/kingtuto/CoM.git
