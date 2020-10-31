@@ -11,8 +11,8 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
     { path: '*', component: LoginForm } ,
-    { path: '/auth/register', component: Register },
-    { path: '/auth/reset_password', component: ResetPassword }
+    { path: '/register', component: Register },
+    { path: '/reset_password', component: ResetPassword }
   ],
   mode: 'history'
 })

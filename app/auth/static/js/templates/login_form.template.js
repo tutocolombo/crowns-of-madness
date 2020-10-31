@@ -30,8 +30,8 @@ const LoginFormTemplate = `
   </form>
 
   <hr>
-  <router-link to="/auth/register">Register new user</router-link><br>
-  <router-link to="/auth/reset_password">Reset password</router-link>
+  <router-link to="/register">Register new user</router-link><br>
+  <router-link to="/reset_password">Reset password</router-link>
 </div>
 `
 

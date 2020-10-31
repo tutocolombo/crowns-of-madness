@@ -1,11 +1,11 @@
 from flask import Flask
-from pusher import Pusher
 from config import Config
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
+from flask_pusher import Pusher
 
 
 cors = CORS()
@@ -14,6 +14,7 @@ migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
 mail = Mail()
+pusher = Pusher()
 
 
 def create_app(config_class=Config):
@@ -25,14 +26,7 @@ def create_app(config_class=Config):
     migrate.init_app(app, db)
     login.init_app(app)
     mail.init_app(app)
-
-    app.pusher_client = Pusher(
-        app_id=app.config['PUSHER_APP_ID'],
-        key=app.config['PUSHER_APP_KEY'],
-        secret=app.config['PUSHER_APP_SECRET'],
-        cluster=app.config['PUSHER_APP_CLUSTER'],
-        ssl=True
-    )
+    pusher.init_app(app)
 
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')

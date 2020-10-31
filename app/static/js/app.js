@@ -24,6 +24,34 @@ new Vue({
   components: {
     'navbar': Navbar
   },
+  data: {
+    number: 10,
+    pusher: null,
+  },
   router,
+  methods: {
+    initPusher(){
+      wretch('/api/pusher_app')
+      .get()
+      .json(json => {
+        this.pusher = this.newPusher(json)
+      })
+      // .then(() => this.subscribe())
+      // .catch(error => {
+      //   console.log(error)
+      // })
+    },
+    newPusher({ key, cluster }){
+      return new Pusher (key, {
+        cluster: cluster,
+        encrypted: true
+      })
+    }
+  },
+
+  created () {
+    this.initPusher()
+  },
+
   template: MainTemplate,
 })

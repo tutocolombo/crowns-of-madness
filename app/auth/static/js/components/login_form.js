@@ -41,7 +41,7 @@ const LoginForm = {
         .json(json => {
           console.log(json)
           if (!json.ok) this.errors = { ...this.errors, 'server': json.message}
-          else window.location.href = 'index'
+          else window.location.href = '/index'
         })
         .catch(error => {console.log(error)})
     },

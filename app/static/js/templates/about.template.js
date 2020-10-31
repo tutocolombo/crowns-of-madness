@@ -1,5 +1,5 @@
 const AboutTemplate = `<div>
-  <p>About</p>
+  <p>About {{ $parent.number }}</p>
 </div>`
 
 export default AboutTemplate

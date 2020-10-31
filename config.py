@@ -17,6 +17,6 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['admin@crowns.om']
     PUSHER_APP_ID = os.environ.get('PUSHER_APP_ID')
-    PUSHER_APP_KEY = os.environ.get('PUSHER_APP_KEY')
-    PUSHER_APP_SECRET = os.environ.get('PUSHER_APP_SECRET')
-    PUSHER_APP_CLUSTER = os.environ.get('PUSHER_APP_CLUSTER')
+    PUSHER_KEY = os.environ.get('PUSHER_KEY')
+    PUSHER_SECRET = os.environ.get('PUSHER_SECRET')
+    PUSHER_CLUSTER = os.environ.get('PUSHER_CLUSTER')
